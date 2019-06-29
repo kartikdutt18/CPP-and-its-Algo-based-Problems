@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "g++ -g array_pair_sum.cpp -o array_sum_pair",
+            "command": "g++ -g triple_Step.cpp -o a",
             "group": {
                 "kind": "build",
                 "isDefault": true
