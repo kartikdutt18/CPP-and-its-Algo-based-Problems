@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "g++ -g Tower_of_Hanoi.cpp -o a",
+            "command": "g++ -g Course_Scheduler.cpp. -o a",
             "group": {
                 "kind": "build",
                 "isDefault": true
