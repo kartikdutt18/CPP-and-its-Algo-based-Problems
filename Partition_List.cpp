@@ -9,42 +9,51 @@ struct ListNode {
       ListNode(int x) : val(x), next(NULL) {}
 };
 //Get Tail to insert in O(1)
-ListNode* GetTail(ListNode* head){
-    ListNode* tail=head;
-    while(head){
-        tail=head;
-        head=head->next;
+
+    //To insert in O(1)
+pair<ListNode *, int>  GetTail(ListNode *head)
+{
+    if (head == NULL)
+        return pair(head, 0);
+    int len = 0;
+    while (head->next)
+    {
+        head = head->next;
+        len++;
     }
+    return pair(head, len);
+}
+ListNode *InsertAtTail(ListNode *tail, int d)
+{
+    ListNode *node = new ListNode(d);
+    tail->next = node;
+    tail = node;
     return tail;
 }
-ListNode* insertattail(ListNode* tail,int val){
-    ListNode* node=new ListNode(val);
-    tail->next=node;
-    tail=node;
-    return tail;
-}
-int len(ListNode * head){ 
-    int count=0;
-    while(head!=NULL){
-        head=head->next;
-        count++;
-    }
-    return count;
-}
-
-ListNode* partition(ListNode* head, int x) {
-   int l=len(head);
-   if(head==NULL) return NULL;
-
-   ListNode* prev=head;
-   ListNode * tail=GetTail(head);
-   ListNode* temp=head;
-    while(l--){
-        if(temp->val>=x){
-            prev->next=temp->next;
-            tail=insertattail(tail,temp->val);
+ListNode *partition(ListNode *head, int x)
+{
+    if (head == NULL)
+        return head;
+    pair<ListNode *, int> p = GetTail(head);
+    int l = p.second + 1;
+    ListNode *dummy = new ListNode(INT_MIN);
+    dummy->next = head;
+    ListNode *tail = p.first;
+    ListNode *fast = head;
+    ListNode *slow = dummy;
+    while (l--)
+    {
+        if (fast->val >= x && slow->val < x)
+        {
+            tail = InsertAtTail(tail, fast->val);
+            slow->next = fast->next;
+            fast = fast->next;
         }
-        prev=temp;
-        temp=temp->next;
-    }     
-return head;}
+        else
+        {
+            fast = fast->next;
+            slow = slow->next;
+        }
+    }
+    return dummy->next;
+}
