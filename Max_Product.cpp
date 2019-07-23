@@ -5,11 +5,20 @@ using namespace std;
 
 int maxProduct(vector<int> &nums)
 {
-    int maxP=nums[0];
-    int minP=nums[0];
-    for(int i=1;i<nums.size();i++){
-        maxP=max(nums[i],max(maxP*nums[i],minP*nums[i]));
-        minP = min(nums[i], max(maxP * nums[i], minP * nums[i]));
+    int mx, lastMax, lastMin;
+    mx = lastMax = lastMin = nums[0];
+
+    for (int i = 1; i < nums.size(); i++)
+    {
+
+        int curMax = max(max(nums[i], nums[i] * lastMax), nums[i] * lastMin);
+        int curMin = min(min(nums[i], nums[i] * lastMax), nums[i] * lastMin);
+
+        lastMax = curMax;
+        lastMin = curMin;
+
+        if (curMax > mx)
+            mx = curMax;
     }
-    return maxP;
+    return mx;
 }
