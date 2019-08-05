@@ -1,4 +1,5 @@
 //https : //practice.geeksforgeeks.org/problems/lowest-common-ancestor-in-a-bst/1
+//https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 #include<iostream>
 #include<bits/stdc++.h>
         using namespace std;
