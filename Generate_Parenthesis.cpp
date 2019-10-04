@@ -2,6 +2,36 @@
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
+
+vector<string> ans;
+void Generate_Combinations(int n, int open, int closed, string cur_set)
+{
+    if (cur_set.length() == 2 * n && open == closed)
+    {
+        ans.push_back(cur_set);
+        return;
+    }
+
+    if (open <= n)
+    {
+        cur_set.push_back('(');
+        Generate_Combinations(n, open + 1, closed, cur_set);
+        cur_set.pop_back();
+    }
+    if (closed < n && open > closed)
+    {
+        cur_set.push_back(')');
+        Generate_Combinations(n, open, closed + 1, cur_set);
+        cur_set.pop_back();
+    }
+    return;
+}
+vector<string> generateParenthesis(int n)
+{
+    Generate_Combinations(n, 0, 0, "");
+    return ans;
+}
+
 /*vector<string> generateParenthesis(int n)
 {
     if(n<=0) return {};
@@ -22,29 +52,3 @@ using namespace std;
     return dp[n];
 }
 */
-
-set<string> ht;
-void placepara(int open,int closed,int n,string s){
-    if(closed==n){
-        ht.insert(s);
-        return;
-    }
-    s+='(';
-    open++;
-    placepara(open,closed,n,s);
-    
-    if(open>closed){
-        s+=')';
-        closed++;
-        placepara(open, closed, n, s);
-    }
-    open--;
-    s.pop_back();
-    if(closed>open && s.back()==')'){
-        s.pop_back();
-        closed--;
-    }
-}
-vector<string> generateParenthesis(int n){
-
-}
