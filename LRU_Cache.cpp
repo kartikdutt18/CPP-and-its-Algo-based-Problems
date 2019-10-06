@@ -28,18 +28,22 @@ public:
         tail->prev = head;
         cur_size = 0;
     }
-
-    int get(int key)
+    Node *move_to_head(Node *p)
     {
-        if (!ht.count(key))
-            return -1;
-        auto p = ht[key];
         p->next->prev = p->prev;
         p->prev->next = p->next;
         p->prev = head;
         p->next = head->next;
         head->next = p;
         p->next->prev = p;
+        return p;
+    }
+    int get(int key)
+    {
+        if (!ht.count(key))
+            return -1;
+        auto p = ht[key];
+        p = move_to_head(p);
         ht[key] = p;
         return p->val.second;
     }
@@ -50,14 +54,7 @@ public:
         if (ht.count(key))
         {
             ht[key]->val.second = value;
-            auto p = ht[key];
-            p->next->prev = p->prev;
-            p->prev->next = p->next;
-            p->prev = head;
-            p->next = head->next;
-            head->next = p;
-            p->next->prev = p;
-            ht[key] = p;
+            move_to_head(ht[key]);
             return;
         }
         cur_size++;
