@@ -28,14 +28,19 @@ public:
         tail->prev = head;
         cur_size = 0;
     }
-    Node *move_to_head(Node *p)
+    Node *connect_to_head(Node *p)
     {
-        p->next->prev = p->prev;
-        p->prev->next = p->next;
         p->prev = head;
         p->next = head->next;
         head->next = p;
         p->next->prev = p;
+        return p;
+    }
+    Node *move_to_head(Node *p)
+    {
+        p->next->prev = p->prev;
+        p->prev->next = p->next;
+        p = connect_to_head(p);
         return p;
     }
     int get(int key)
@@ -47,7 +52,15 @@ public:
         ht[key] = p;
         return p->val.second;
     }
-
+    void delete_last_node()
+    {
+        ht.erase(tail->prev->val.first);
+        auto t = tail->prev;
+        tail->prev->prev->next = tail;
+        tail->prev = tail->prev->prev;
+        cur_size--;
+        delete t;
+    }
     void put(int key, int value)
     {
 
@@ -60,20 +73,12 @@ public:
         cur_size++;
         if (cur_size > capacity)
         {
-            ht.erase(tail->prev->val.first);
-            auto t = tail->prev;
-            tail->prev->prev->next = tail;
-            tail->prev = tail->prev->prev;
-            cur_size--;
-            delete t;
+            delete_last_node();
         }
 
         Node *p = new Node({key, value});
         ht[key] = p;
-        p->next = head->next;
-        p->prev = head;
-        head->next->prev = p;
-        head->next = p;
+        connect_to_head(p);
 
         return;
     }
