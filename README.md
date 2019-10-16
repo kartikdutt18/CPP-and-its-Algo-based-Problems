@@ -5,3 +5,14 @@ C++ is considered a prestigious language used for applications such as games, op
 This Repo contains solutions of questions from LeetCode,HackerBlocks, Codeforces and some other sites.
 Updated Daily.
 
+### Running C++:
+```
+g++ -o output_filename cpp_file_name
+./output_filename
+```
+
+You can also provide input as text files.
+
+```
+./output_filename < input.txt >output.txt
+```
