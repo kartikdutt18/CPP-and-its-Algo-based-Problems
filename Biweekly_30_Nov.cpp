@@ -100,7 +100,7 @@ public:
         int ans=0;
         set<int> invalid;
         if(tree[0].second==0) return 0;
-        for(int i=1;i<parents.size();i++){
+        for(int i=1;i<parent.size();i++){
             if(invalid.count(parent[i]) || tree[i].second==0) invalid.insert(i);
             else ans++;
         }
