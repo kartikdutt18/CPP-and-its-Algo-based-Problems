@@ -3,6 +3,7 @@
 #include<bits/stdc++.h>
 #define ll long long
 using namespace std;
+//Greedy Approach
 void devideAndMod(int &n,int d,int &sum)
 {
     sum+=n/d;
