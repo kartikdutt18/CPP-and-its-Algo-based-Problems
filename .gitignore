@@ -1,3 +1,8 @@
-DS_Store
+# Files extentions to ignore
+.DS_Store
 .vscode
 .out
+.sh
+
+# Folders to ignore
+./RunCPP/*
