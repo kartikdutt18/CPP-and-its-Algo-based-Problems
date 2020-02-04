@@ -17,7 +17,7 @@ int main()
     {
         int n;
         cin>>n;
-        cout<<isPalindrome(x)<<endl;
+        cout<<isPalindrome(n)<<endl;
     }
     return 0;
 }
