@@ -1,6 +1,7 @@
 # Files extentions to ignore
 *.DS_Store
-*.vscode
+.DS_Store
+**/.vscode
 *.out
 *.sh
 *.txt
