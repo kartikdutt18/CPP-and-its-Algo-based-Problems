@@ -10,6 +10,9 @@ testCasesPassed = 0
 testCasesFailed = 0
 # Loop to check if all output match.
 for line in fileOutput:
+    if(iterator < testCasesFailed + testCasesPassed):
+        print("Debugging Right?")
+        break
     if (line == array[iterator] and len(line) > 0 and len(array[iterator]) > 0):
         print("PASSED, Output: ",line," Correct Output: ",array[iterator])
         testCasesPassed +=1
