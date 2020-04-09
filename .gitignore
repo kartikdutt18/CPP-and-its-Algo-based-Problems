@@ -5,5 +5,8 @@
 *.out
 *.sh
 *.txt
+input.txt
+output.txt
+test.out
 # Folders to ignore
 **/RunCPP
