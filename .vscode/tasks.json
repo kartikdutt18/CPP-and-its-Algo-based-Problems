@@ -33,6 +33,18 @@
                 "$gcc"
             ],
             "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "g++ debug cpp file",
+            "command": "${cwd}/RunCPP/runCppDebug.sh ${fileDirname}/${fileBasenameNoExtension}.cpp",
+            "options": {
+                "cwd": "./"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
         }
     ]
 }
