@@ -30,8 +30,16 @@ int main()
   for(int i = 0; i < n; i++)
   {
     cin >> v[i].first >> v[i].second;
-    maxX 
+    maxX  = max(maxX, v[i].first);
+    maxY = max(maxY, v[i].second);
+    minX = min(minX, v[i].first);
+    minY = min(minY, v[i].second);
   }
 
+  int ans = 0;
+  for(pair<int, int> p : v)
+  {
+    
+  }
   return 0;
 }
