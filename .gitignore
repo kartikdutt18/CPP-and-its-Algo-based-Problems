@@ -11,3 +11,4 @@ correctOutput.txt
 test.out
 # Folders to ignore
 **/RunCPP
+Active-Contests/*
