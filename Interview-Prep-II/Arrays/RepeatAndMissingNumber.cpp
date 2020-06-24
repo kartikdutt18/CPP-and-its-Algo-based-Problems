@@ -15,7 +15,7 @@ vector<int> repeatedNumber(const vector<int> &A)
   long long sum = sumOfSquares / diff;
   long long a = (diff + sum) / 2;
   long long b = sum - a;
-  return {a, b};
+  return {(int)a, (int)b};
 }
 
 
