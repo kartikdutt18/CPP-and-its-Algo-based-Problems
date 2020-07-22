@@ -14,18 +14,31 @@ unsigned int reverseBits(unsigned int num)
     if (temp)
       reverse_num |= (1 << ((NO_OF_BITS - 1) - i));
   }
-  cout << "Brute Force: " << reverse_num << endl;
   return reverse_num;
 }
 
-void solve(unsigned int x)
+unordered_map<int, int> ht;
+void reverseBitsFast(unsigned int num)
 {
-  unsigned int len = sizeof(x) * 8;
-  unsigned int totalXor = (x >> (len / 2)) ^ x;
-  cout << totalXor << endl;
-  x = ((((x >> (len / 2)) ^ totalXor) << (len / 2)) | (x ^ totalXor));
-  cout << "O(1) : " << x << endl << "---------\n";
-  return;
+  if (ht.empty())
+  {
+    for (int i = 0; i < 16; i++)
+    {
+      ht[i] = reverseBits(i);
+    }
+
+  }
+
+  const int bitMask = 0xFFFF;
+  const int wordSize = 16;
+  unsigned int NO_OF_BITS = sizeof(num) * 8;
+  int ans = 0;
+  int numBlocks = NO_OF_BITS / wordSize;
+  for (int i = 0; i < numBlocks; i++)
+  {
+    ans = ans | (ht[(num >> (i * wordSize)) & bitMask] << ((numBlocks - i - 1) * wordSize));
+  }
+  cout << ans << endl;
 }
 
 int main()
@@ -36,8 +49,8 @@ int main()
   {
     int x;
     cin>>x;
-    reverseBits(x);
-    solve(x);
+    cout << reverseBits(x) << endl;
+    reverseBitsFast(x);
   }
   return 0;
 }
