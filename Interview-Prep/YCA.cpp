@@ -44,6 +44,7 @@ AncestralTree *getYoungestCommonAncestor(AncestralTree *topAncestor,
     descendantOne = descendantOne->ancestor;
     depthOf1--;
   }
+
   while (descendantOne != descendantTwo)
   {
     descendantOne = descendantOne->ancestor;
